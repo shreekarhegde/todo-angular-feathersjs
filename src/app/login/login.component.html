@@ -1,0 +1,34 @@
+<div class="container login-container">
+  <div class="row">
+    <div class="col-md-6 login-form-1">
+      <h3>Login</h3>
+      <form #f="ngForm" (ngSubmit)="loginUser(f)">
+        <div class="form-group">
+          <input
+            name="email"
+            ng-model="email"
+            type="text"
+            class="form-control"
+            placeholder="Your Email *"
+            value=""
+            ngModel
+          />
+        </div>
+        <div class="form-group">
+          <input
+            name="password"
+            ng-model="password"
+            type="password"
+            class="form-control"
+            placeholder="Your Password *"
+            value=""
+            ngModel
+          />
+        </div>
+        <div class="form-group">
+          <input type="submit" class="btnSubmit" value="Login" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

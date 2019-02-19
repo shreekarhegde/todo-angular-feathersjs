@@ -1,0 +1,64 @@
+.completed {
+  text-decoration: line-through;
+}
+/* {
+  padding: 0px;
+  margin: 0px;
+}
+.container {
+  position: absolute;
+  width: 400px;
+  z-index: 15;
+  top: 25%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  background: rgb(226, 221, 221);
+}
+input {
+  width: 95%;
+  margin-top: 7px;
+}
+h1 {
+  font-size: 100px;
+  font-family: serif;
+}
+.add-todo {
+  height: 36px;
+  text-align: center;
+}
+.d-btn {
+  position: fixed;
+  right: 33%;
+}
+.task {
+  position: fixed;
+  padding-left: 20px;
+}
+
+.act {
+  margin-left: 10px;
+  width: 80px;
+}
+.all {
+  margin-left: 5px !important;
+  width: 40px;
+}
+.done {
+  margin-left: 5px;
+  width: 100px;
+}
+li {
+  height: 30px;
+} */
+
+.footer {
+  height: 37px;
+}
+.todos {
+  margin-top: 30px;
+}
+.check {
+  float: left;
+  margin-left: 20px;
+  margin-top: 25px;
+}
