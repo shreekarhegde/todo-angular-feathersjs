@@ -13,11 +13,12 @@ module.exports = function(app) {
 
   const options = {
     Model,
-    paginate
+    paginate,
+    multi: true
   };
 
   // Initialize our service with any options it requires
-  app.use("todos", createService(options, { multi: true }));
+  app.use("todos", createService(options));
   // Get our initialized service so that we can register hooks
 
   const todoService = app.service("todos");

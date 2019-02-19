@@ -57,13 +57,6 @@ export class TodoListComponent implements OnInit {
         isCompleted: false,
         editing: false
       };
-      // this.accessToken = this.authService.accessToken;
-      // let headerParams = {
-      //   headers: new HttpHeaders({
-      //     "Content-Type": "application/json",
-      //     Authorization: this.accessToken
-      //   })
-      // };
       let response = this.http.post(this.url, data, this.headerParams);
       response.subscribe(todos => {
         console.log(todos, "from post api");
@@ -116,7 +109,7 @@ export class TodoListComponent implements OnInit {
     let response = this.http
       .delete(this.url + this.query, this.headerParams)
       .subscribe(res => {
-        console.log(res);
+        this.todos = [];
       });
   }
 }

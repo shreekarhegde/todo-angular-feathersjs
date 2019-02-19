@@ -33,36 +33,35 @@ export class AuthService {
   }
 
   get userID() {
+    this._userID = JSON.parse(localStorage.getItem("user")).token.id;
     return this._userID;
   }
 
-  set userID(userId: string) {
-    this._userID = userId;
-  }
+  // set userID(userId: string) {
+  //   this._userID = userId;
+  // }
 
   get accessToken() {
+    this._accessToken = JSON.parse(
+      localStorage.getItem("user")
+    ).token.accessToken;
     return this._accessToken;
   }
 
-  set accessToken(token: string) {
-    this._accessToken = token;
-  }
+  // set accessToken(token: string) {
+  //   let user = JSON.parse(localStorage.getItem("user"));
+  //   // console.log(localStorage.getItem("user"));
+  //   console.log(user);
+  //   // this._accessToken = token;
+  // }
 
-  setAuthVars(token) {
-    const accessToken = token.accessToken;
-    const userId = token.id;
-    console.log("getToken: accessToken -->second response", accessToken);
-    console.log("getToken: userID -->second response", userId);
-    this.userID = userId;
-    this.accessToken = accessToken;
+  // setAuthVars(token) {
+  //   const accessToken = token.accessToken;
+  //   const userId = token.id;
+  //   console.log("getToken: accessToken -->second response", accessToken);
+  //   console.log("getToken: userID -->second response", userId);
+  //   this.userID = userId;
+  //   this.accessToken = accessToken;
 
-    // return this.http
-    //   .get(`http://localhost:3030${url}`, {
-    //     headers: new HttpHeaders({
-    //       "Content-Type": "application/json",
-    //       Authorization: accessToken
-    //     })
-    //   })
-    //   .pipe(catchError(this.handleError));
-  }
+  // }
 }

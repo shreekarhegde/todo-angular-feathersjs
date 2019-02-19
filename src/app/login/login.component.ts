@@ -49,9 +49,9 @@ export class LoginComponent implements OnInit {
         .serveHttpPost("authentication", login_credentials)
         .subscribe(
           token => {
-            console.log("first response------>", token);
+            console.log("login user: first response------>", token);
             if (token["accessToken"].length !== 0) {
-              this.authService.setAuthVars(token);
+              localStorage.setItem("user", JSON.stringify({ token: token }));
               const snackbarRef = this.snackbar.open("Login successfull!", "", {
                 duration: 2000,
                 verticalPosition: "top",
