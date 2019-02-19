@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
                 verticalPosition: "top",
                 panelClass: "login-snackbar"
               });
-
               this.router.navigate(["/todos"]);
             }
           },
@@ -84,29 +83,5 @@ export class LoginComponent implements OnInit {
         }
       );
     }
-
-    // this.authService.getToken("/todos", token).subscribe(res => {
-    //   console.log("get: token-------->third response", res);
-    //   if (res) {
-    //     this.router.navigate(["/todos"]);
-    //   }
-    // });
-
-    // user_auth.subscribe(token => {
-    //   console.log(token, "res from auth api");
-    //   if (token["accessToken"]) {
-    //     this.router.navigate(["/users/:id/todos"]);
-    //   } else if (
-    //     f.value.email.trim().length == 0 &&
-    //     f.value.password.trim().length == 0
-    //   ) {
-    //     const snackbarRef = this.snackbar.open(
-    //       "Please enter user name and password",
-    //       "OK"
-    //     );
-    //   } else {
-    //     const snackbarRef = this.snackbar.open("login failed!", "Try again");
-    //   }
-    // });
   }
 }

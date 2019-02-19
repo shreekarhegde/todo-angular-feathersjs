@@ -1,4 +1,8 @@
-<section class="todoapp">
+<!-- <img
+  *ngIf="loading"
+  src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" class=""
+/> -->
+<section class="todoapp" *ngIf="visible">
   <header class="header">
     <h1 class="todos">todos</h1>
     <input
@@ -11,7 +15,12 @@
     />
   </header>
   <section class="main">
-    <input id="toggle-all" class="toggle-all" type="checkbox" />
+    <input
+      id="toggle-all"
+      class="toggle-all"
+      type="checkbox"
+      (click)="markAllasComplete()"
+    />
     <label for="toggle-all">Mark all as complete</label>
     <ul class="todo-list">
       <li *ngFor="let todo of todosFiltered()">
@@ -73,4 +82,8 @@
       Delete all
     </button>
   </footer>
+</section>
+
+<section *ngIf="show">
+  <mat-spinner class="spin"></mat-spinner>
 </section>

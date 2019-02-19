@@ -11,6 +11,7 @@ import { CommonModule } from "@angular/common";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AuthService } from "./auth.service";
 import { HttpClientModule } from "@angular/common/http";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 const appRoutes: Routes = [{ path: "todos", component: TodoListComponent }];
 
@@ -25,7 +26,8 @@ const appRoutes: Routes = [{ path: "todos", component: TodoListComponent }];
     FormsModule,
     RouterModule.forRoot(appRoutes),
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   exports: [RouterModule],
   providers: [AuthService],

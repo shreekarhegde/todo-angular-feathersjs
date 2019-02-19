@@ -1,8 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, NgModule } from "@angular/core";
 import { Todo } from "../interfaces/todo";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../auth.service";
+import { NgModel } from "@angular/forms";
+
 @Component({
   selector: "app-todo-list",
   templateUrl: "./todo-list.component.html",
@@ -18,6 +20,9 @@ export class TodoListComponent implements OnInit {
   headerParams: object;
   url: string;
   query: string;
+  private loading: boolean;
+  private visible: boolean;
+  private show: boolean;
 
   constructor(
     private http: HttpClient,
@@ -27,22 +32,35 @@ export class TodoListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.loading = true;
+    this.visible = false;
+    this.show = true;
     this.todoTitle = "";
     this.todos = [];
     this.filter = "all";
     this.userID = this.authService.userID;
     this.accessToken = this.authService.accessToken;
+
     console.log("todo init: accessToken -->", this.accessToken);
     console.log("todo init: userID -->", this.userID);
+
     this.query = "/?userID=" + this.userID;
     this.url = "http://localhost:3030/todos";
+
     console.log("todo init: final url -->", this.url + this.query);
+
     this.headerParams = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
         Authorization: this.accessToken
       })
     };
+    setTimeout(() => {
+      this.loading = false;
+      this.visible = true;
+      this.show = false;
+    }, 3000);
+
     let response = this.http.get(this.url + this.query, this.headerParams);
     response.subscribe(todos => {
       console.log("from get api", todos);
@@ -111,5 +129,11 @@ export class TodoListComponent implements OnInit {
       .subscribe(res => {
         this.todos = [];
       });
+  }
+  markAllasComplete(): any {
+    this.todos = this.todos.map(todo => {
+      console.log(todo);
+      // todo.isCompleted = true;
+    });
   }
 }
