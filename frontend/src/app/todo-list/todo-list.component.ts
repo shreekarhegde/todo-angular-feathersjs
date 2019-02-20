@@ -62,10 +62,15 @@ export class TodoListComponent implements OnInit {
     }, 3000);
 
     let response = this.http.get(this.url + this.query, this.headerParams);
-    response.subscribe(todos => {
-      console.log("from get api", todos);
-      this.todos = this.todos.concat(todos["data"]);
-    });
+    response.subscribe(
+      todos => {
+        console.log("from get api", todos);
+        this.todos = this.todos.concat(todos["data"]);
+      },
+      err => {
+        console.log("todolist: ngOniniterr---->", err);
+      }
+    );
   }
 
   addTodo(): void {
@@ -76,20 +81,30 @@ export class TodoListComponent implements OnInit {
         editing: false
       };
       let response = this.http.post(this.url, data, this.headerParams);
-      response.subscribe(todos => {
-        console.log(todos, "from post api");
-        this.todos = this.todos.concat(todos);
-      });
+      response.subscribe(
+        todos => {
+          console.log(todos, "from post api");
+          this.todos = this.todos.concat(todos);
+        },
+        err => {
+          console.log("todolist: addTodo---->", err);
+        }
+      );
     }
   }
 
   deleteTodo(id: number): void {
     console.log(id);
     let response = this.http.delete(`${this.url}/${id}`, this.headerParams);
-    response.subscribe(todos => {
-      console.log(todos, "from delete api");
-      this.todos = this.todos.filter(todo => todo._id !== id);
-    });
+    response.subscribe(
+      todos => {
+        console.log(todos, "from delete api");
+        this.todos = this.todos.filter(todo => todo._id !== id);
+      },
+      err => {
+        console.log("todolist: deleteTodoerr---->", err);
+      }
+    );
   }
 
   editTodo(todo: Todo) {
@@ -104,9 +119,14 @@ export class TodoListComponent implements OnInit {
       todo,
       this.headerParams
     );
-    response.subscribe(todos => {
-      console.log(todos, "from edit api");
-    });
+    response.subscribe(
+      todos => {
+        console.log(todos, "from edit api");
+      },
+      err => {
+        console.log("todolist: doneEdit---->", err);
+      }
+    );
   }
 
   remaining(): number {
@@ -126,9 +146,14 @@ export class TodoListComponent implements OnInit {
   delteAll(): void {
     let response = this.http
       .delete(this.url + this.query, this.headerParams)
-      .subscribe(res => {
-        this.todos = [];
-      });
+      .subscribe(
+        res => {
+          this.todos = [];
+        },
+        err => {
+          console.log("todolist: deleteAll---->", err);
+        }
+      );
   }
   markAllasComplete(): any {
     this.todos = this.todos.map(todo => {

@@ -6,9 +6,11 @@ import {
   HttpErrorResponse,
   HttpHeaders
 } from "@angular/common/http";
+
 import { map, catchError } from "rxjs/operators";
 import { Observable, of, Subject, throwError } from "rxjs";
 import { User } from "./interfaces/user";
+
 @Injectable({
   providedIn: "root"
 })
@@ -37,31 +39,10 @@ export class AuthService {
     return this._userID;
   }
 
-  // set userID(userId: string) {
-  //   this._userID = userId;
-  // }
-
   get accessToken() {
     this._accessToken = JSON.parse(
       localStorage.getItem("user")
     ).token.accessToken;
     return this._accessToken;
   }
-
-  // set accessToken(token: string) {
-  //   let user = JSON.parse(localStorage.getItem("user"));
-  //   // console.log(localStorage.getItem("user"));
-  //   console.log(user);
-  //   // this._accessToken = token;
-  // }
-
-  // setAuthVars(token) {
-  //   const accessToken = token.accessToken;
-  //   const userId = token.id;
-  //   console.log("getToken: accessToken -->second response", accessToken);
-  //   console.log("getToken: userID -->second response", userId);
-  //   this.userID = userId;
-  //   this.accessToken = accessToken;
-
-  // }
 }

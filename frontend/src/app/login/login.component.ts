@@ -16,7 +16,7 @@ import { AuthService } from "../auth.service";
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.css"],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None //removes default properties of set by angular for external packages like snackbar and spinner
 })
 export class LoginComponent implements OnInit {
   public email: string;
@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
             }
           },
           err => {
+            console.log("loginUser------>", err);
             const snackbarRef = this.snackbar.open(
               "login failed",
               "Try again",

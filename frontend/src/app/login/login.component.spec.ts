@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
 
 import { LoginComponent } from "./login.component";
+import { AuthService } from "../auth.service";
 
 describe("LoginComponent", () => {
   let component: LoginComponent;
@@ -10,7 +11,8 @@ describe("LoginComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      schemas: [NO_ERRORS_SCHEMA] //to remove the parse error at the time of testing
+      schemas: [NO_ERRORS_SCHEMA], //to remove the parse error at the time of testing
+      providers: [AuthService] //fixing static injection error
     }).compileComponents();
   }));
 
