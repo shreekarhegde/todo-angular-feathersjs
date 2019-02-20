@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Component } from "@angular/core";
 import { MatSnackBar } from "@angular/material";
 
 import {
@@ -35,14 +35,20 @@ export class AuthService {
   }
 
   get userID() {
-    this._userID = JSON.parse(localStorage.getItem("user")).token.id;
+    this._userID =
+      JSON.parse(localStorage.getItem("user")) &&
+      JSON.parse(localStorage.getItem("user")).token
+        ? JSON.parse(localStorage.getItem("user"))["token"].id
+        : "";
     return this._userID;
   }
 
   get accessToken() {
-    this._accessToken = JSON.parse(
-      localStorage.getItem("user")
-    ).token.accessToken;
+    this._accessToken =
+      JSON.parse(localStorage.getItem("user")) &&
+      JSON.parse(localStorage.getItem("user")).token
+        ? JSON.parse(localStorage.getItem("user"))["token"].accessToken
+        : "";
     return this._accessToken;
   }
 }

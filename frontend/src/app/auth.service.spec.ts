@@ -1,11 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
+import { AuthService } from "./auth.service";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material";
 
-import { AuthService } from './auth.service';
+describe("AuthService", () => {
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule, MatSnackBarModule],
+      providers: [MatSnackBar, HttpClient, MatSnackBarModule]
+    })
+  );
 
-describe('AuthService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
-
-  it('should be created', () => {
+  it("should be created", () => {
     const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });

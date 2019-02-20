@@ -4,14 +4,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
 import { AuthService } from "../auth.service";
 
-// import { User } from "../interfaces/user";
-
-@NgModule({
-  imports: [FormsModule, ReactiveFormsModule]
-})
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -27,7 +21,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public snackbar: MatSnackBar,
-    private http: HttpClient,
     private authService: AuthService
   ) {}
   ngOnInit() {

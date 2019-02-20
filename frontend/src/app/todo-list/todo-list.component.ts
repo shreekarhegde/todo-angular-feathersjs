@@ -1,9 +1,7 @@
 import { Component, OnInit, NgModule } from "@angular/core";
 import { Todo } from "../interfaces/todo";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../auth.service";
-import { NgModel } from "@angular/forms";
 
 @Component({
   selector: "app-todo-list",
@@ -24,12 +22,7 @@ export class TodoListComponent implements OnInit {
   private visible: boolean;
   private show: boolean;
 
-  constructor(
-    private http: HttpClient,
-    private route: ActivatedRoute,
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   ngOnInit() {
     this.loading = true;
