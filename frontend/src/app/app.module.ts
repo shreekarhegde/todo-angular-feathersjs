@@ -10,11 +10,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CommonModule } from "@angular/common";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { AuthService } from "./auth.service";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-
-const appRoutes: Routes = [{ path: "todos", component: TodoListComponent }];
-
 @NgModule({
   declarations: [AppComponent, TodoListComponent, LoginComponent],
   imports: [
@@ -24,13 +21,12 @@ const appRoutes: Routes = [{ path: "todos", component: TodoListComponent }];
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes),
     MatSnackBarModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule
   ],
   exports: [RouterModule],
-  providers: [AuthService],
+  providers: [AuthService, MatProgressSpinnerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
