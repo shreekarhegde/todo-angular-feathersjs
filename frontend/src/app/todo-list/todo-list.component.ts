@@ -18,9 +18,9 @@ export class TodoListComponent implements OnInit {
   headerParams: object;
   url: string;
   query: string;
-  private loading: boolean;
-  private visible: boolean;
-  private show: boolean;
+  public loading: boolean;
+  public visible: boolean;
+  public show: boolean;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

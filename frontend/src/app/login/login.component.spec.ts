@@ -1,12 +1,12 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { MatSnackBar, MatSnackBarModule } from "@angular/material";
 
 import { LoginComponent } from "./login.component";
-import { AuthService } from "../auth.service";
-import { Router } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 import { RouterTestingModule } from "@angular/router/testing";
+import { MatSnackBar } from "@angular/material";
+import { Overlay } from "@angular/cdk/overlay";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
 
 describe("LoginComponent", () => {
   let component: LoginComponent;
@@ -14,15 +14,25 @@ describe("LoginComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule, RouterTestingModule, HttpClientModule],
+      providers: [MatSnackBar, Overlay, HttpClient],
       declarations: [LoginComponent],
-      schemas: [NO_ERRORS_SCHEMA], //to remove the parse error at the time of testing
-      providers: [AuthService, RouterTestingModule], //fixing static injection error
-      imports: [FormsModule]
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
   }));
 
+  beforeEach(() => {
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it("should create", () => {
-    let component = new LoginComponent(null, null, null, null); //component should be an instance of the module, otherwise will throw undefined
     expect(component).toBeTruthy();
+  });
+
+  it("length of email should be greater than 2", () => {
+    component["email"] = "test@gmail.com";
+    expect(component.email.length).toBeGreaterThan(2);
   });
 });

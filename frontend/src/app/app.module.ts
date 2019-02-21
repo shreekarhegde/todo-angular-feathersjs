@@ -27,7 +27,7 @@ import { RouterTestingModule } from "@angular/router/testing"; //
     MatProgressSpinnerModule
   ],
   exports: [RouterModule, RouterTestingModule], //router testing module is the ng-7 way of providing router module for testing
-  providers: [AuthService, RouterTestingModule],
+  providers: [AuthService, RouterTestingModule, HttpClient, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

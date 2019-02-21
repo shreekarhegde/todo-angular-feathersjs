@@ -1,4 +1,11 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+  inject
+} from "@angular/core/testing";
 import { TodoListComponent } from "./todo-list.component";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 // import { Router, ActivatedRoute, RouterModule } from "@angular/router";
@@ -14,15 +21,9 @@ describe("TodoListComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TodoListComponent],
-      schemas: [NO_ERRORS_SCHEMA], //trying to remove template parse errors-> not working
-      imports: [MatSnackBarModule, HttpClientModule], //declaring third party module to remove template parse errors-> not working
-      providers: [
-        HttpClient,
-        // ActivatedRoute,
-        MatSnackBar,
-        MatSnackBarModule
-        // RouterModule
-      ]
+      schemas: [NO_ERRORS_SCHEMA], //to remove template parse errors
+      imports: [MatSnackBarModule, HttpClientModule], //declaring third party module to remove template parse errors
+      providers: [HttpClient, MatSnackBar, MatSnackBarModule]
     }).compileComponents();
   }));
 
@@ -35,4 +36,31 @@ describe("TodoListComponent", () => {
   it("should create", () => {
     expect(component).toBeTruthy();
   });
+
+  it("should call the ngOnInit method only once", () => {
+    fixture.detectChanges();
+    spyOn(component, "ngOnInit");
+    fixture.componentInstance.ngOnInit();
+    expect(component.ngOnInit).toHaveBeenCalledTimes(1);
+  });
+
+  it("value of the variables loading,visible and show should be true,false and true respectively after 3 seconds", fakeAsync(() => {
+    expect(fixture.componentInstance.loading).toBe(true);
+    expect(fixture.componentInstance.visible).toBe(false);
+    expect(fixture.componentInstance.show).toBe(true);
+
+    setTimeout(() => {
+      fixture.componentInstance.loading = false;
+      fixture.componentInstance.visible = true;
+      fixture.componentInstance.show = false;
+    }, 3000);
+
+    tick(3000); //triggers setTimeout
+
+    expect(fixture.componentInstance.loading).toBe(false);
+    expect(fixture.componentInstance.visible).toBe(true);
+    expect(fixture.componentInstance.show).toBe(false);
+  }));
+
+  //use spy on method to test the parameters passed to a function
 });

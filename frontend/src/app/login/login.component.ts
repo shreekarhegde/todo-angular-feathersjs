@@ -2,7 +2,6 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { MatSnackBar } from "@angular/material";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { AuthService } from "../auth.service";
 
@@ -16,13 +15,13 @@ export class LoginComponent implements OnInit {
   public email: string;
   public password: string;
   public users: Array<any>;
-  //public users: Array<User> ??
+
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public snackbar: MatSnackBar,
     private authService: AuthService
   ) {}
+
   ngOnInit() {
     this.email = "";
     this.password = "";

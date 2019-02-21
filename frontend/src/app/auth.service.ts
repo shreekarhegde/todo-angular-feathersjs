@@ -16,8 +16,8 @@ import { User } from "./interfaces/user";
 })
 export class AuthService {
   constructor(private http: HttpClient, private snackbar: MatSnackBar) {}
-  private _userID: string;
-  private _accessToken: string;
+  public _userID: string;
+  public _accessToken: string;
 
   serveHttpPost(url, data) {
     return this.http
